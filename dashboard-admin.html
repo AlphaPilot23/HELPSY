@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel de administración · Helpsy</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap">
+  <link rel="stylesheet" href="dashboard-admin.css">
+</head>
+<body>
+  <!-- Iconos reutilizables -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5M16 5.2a3.2 3.2 0 0 1 0 5.6M18 14.4c1.8.7 2.7 2.2 3 4.6"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V4M8 8l4-4 4 4M4 15v4h16v-4"/></symbol>
+    <symbol id="i-bars" viewBox="0 0 24 24"><path d="M6 20v-7M12 20V5M18 20v-10"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="4" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="11" width="7" height="9" rx="1.5"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.3 2.4 2.4 4.6-5"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10h14V9M10 13h4"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 17v-6a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21h4"/></symbol>
+  </svg>
+
+  <div class="app">
+    <!-- Menú lateral -->
+    <aside class="side">
+      <div class="logo">
+        <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 4.5 5.5v6c0 4.6 3.1 8.3 7.5 10 4.4-1.7 7.5-5.4 7.5-10v-6L12 2.5Z" fill="#3b82f6"/><path d="M12 8v6M9 11h6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Helpsy
+      </div>
+      <nav class="menu" aria-label="Menú principal">
+        <a href="#"><svg class="ic"><use href="#i-users"/></svg>Usuarios</a>
+        <a href="#"><svg class="ic"><use href="#i-upload"/></svg>Carga de datos</a>
+        <a href="#"><svg class="ic"><use href="#i-bars"/></svg>Indicadores</a>
+        <a href="#"><svg class="ic"><use href="#i-file"/></svg>Reportes</a>
+        <a href="#"><svg class="ic"><use href="#i-list"/></svg>Seguimiento</a>
+        <a href="dashboard-admin.html" class="active" aria-current="page"><svg class="ic"><use href="#i-grid"/></svg>Dashboard</a>
+        <a href="#"><svg class="ic"><use href="#i-eye"/></svg>Supervisión</a>
+        <a href="#"><svg class="ic"><use href="#i-user"/></svg>Mi perfil</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="top">
+        <h1>Panel de administración</h1>
+        <div class="user">
+          <div class="bell-wrap">
+            <button class="bell" id="btnBell" aria-label="Notificaciones" aria-expanded="false">
+              <svg class="ic"><use href="#i-bell"/></svg><span class="dot"></span>
+            </button>
+            <div class="pop" id="popNotif" hidden>Sin notificaciones por ahora.</div>
+          </div>
+          <div class="who"><strong id="uNombre">Administrador</strong><span id="uDatos"></span></div>
+          <span class="avatar"><svg class="ic"><use href="#i-user"/></svg></span>
+          <button class="btn-out" id="btnSalir">Cerrar sesión</button>
+        </div>
+      </header>
+
+      <p class="info"><svg class="ic"><use href="#i-info"/></svg>
+        <span>Vista general del sistema: cuántos usuarios y pacientes hay, cómo está funcionando el servicio y qué tan avanzados van los casos activos. Los números vienen de datos de demostración.</span></p>
+
+      <section class="stats" aria-label="Resumen general">
+        <article class="stat">
+          <div class="stat__top"><span class="tile t-blue"><svg class="ic"><use href="#i-users"/></svg></span>Total usuarios</div>
+          <div class="num">1.500</div><p>Registrados en Helpsy (3 de este navegador)</p>
+        </article>
+        <article class="stat">
+          <div class="stat__top"><span class="tile t-green"><svg class="ic"><use href="#i-list"/></svg></span>Pacientes activos</div>
+          <div class="num">849</div><p>Con al menos una sesión en curso</p>
+        </article>
+        <article class="stat">
+          <div class="stat__top"><span class="tile t-amber"><svg class="ic"><use href="#i-file"/></svg></span>Pacientes inactivos</div>
+          <div class="num">310</div><p>Sin sesiones en los últimos 60 días</p>
+        </article>
+        <article class="stat">
+          <div class="stat__top"><span class="tile t-purple"><svg class="ic"><use href="#i-bars"/></svg></span>% de pacientes activos</div>
+          <div class="num">57%</div><p>Sobre el total de usuarios registrados</p>
+        </article>
+      </section>
+
+      <div class="grid2">
+        <section class="card">
+          <div class="card__head">
+            <div><h2>Indicadores de desempeño</h2><p>Qué tan bien está respondiendo el servicio ahora mismo.</p></div>
+            <button class="btn-line">Ver indicadores</button>
+          </div>
+          <div class="bar"><div class="bar__row"><span>Nivel de satisfacción</span><b>88%</b></div><div class="track"><div class="fill" style="width:88%"></div></div></div>
+          <div class="bar"><div class="bar__row"><span>Tiempo de respuesta promedio</span><b>74%</b></div><div class="track"><div class="fill" style="width:74%"></div></div></div>
+          <div class="bar"><div class="bar__row"><span>Tasa de retención de pacientes</span><b>66%</b></div><div class="track"><div class="fill" style="width:66%"></div></div></div>
+        </section>
+
+        <section class="card">
+          <div class="card__head">
+            <div><h2>Carga de datos reciente</h2><p>Últimos archivos subidos al sistema.</p></div>
+            <button class="btn-line" id="btnCargar">Cargar archivo</button>
+          </div>
+          <div class="empty" id="vacio">
+            <svg class="ic"><use href="#i-box"/></svg>
+            <strong>Todavía no has cargado archivos</strong>
+            <p>Cuando subas un archivo en “Carga de datos”, aparecerá aquí.</p>
+          </div>
+          <ul class="files" id="listaArchivos" hidden></ul>
+          <input type="file" id="inputArchivo" accept=".csv,.xlsx,.xls" multiple hidden>
+        </section>
+      </div>
+
+      <section class="card">
+        <div class="card__head">
+          <div><h2>Seguimiento de casos</h2><p>Estado de avance de los casos abiertos en este momento.</p></div>
+          <button class="btn-line">Ver seguimiento completo</button>
+        </div>
+        <div class="cases">
+          <article class="stat">
+            <div class="stat__top"><span class="tile t-green"><svg class="ic"><use href="#i-check"/></svg></span>Casos completados</div>
+            <div class="num">1</div><p>Cerrados con seguimiento al 95% o más</p>
+          </article>
+          <article class="stat">
+            <div class="stat__top"><span class="tile t-blue"><svg class="ic"><use href="#i-list"/></svg></span>En progreso</div>
+            <div class="num">8</div><p>Con tratamiento activo</p>
+          </article>
+          <article class="stat">
+            <div class="stat__top"><span class="tile t-amber"><svg class="ic"><use href="#i-info"/></svg></span>Casos recientes</div>
+            <div class="num">3</div><p>Iniciados hace menos de 2 semanas</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="dashboard-admin.js"></script>
+</body>
+</html>
